@@ -22,14 +22,16 @@ namespace GridSystem {
         public void CreateGrid(GridConfigData _configData) {
             // iterazione per la dimensione X della griglia
             for (int x = 0; x < configData.DimX; x++) {
-                // iterazione per la dimensione Y della griglia
                 for (int y = 0; y < configData.DimY; y++) {
+                    
                     Cell cellToAdd = new Cell(x, y, new Vector3(
-                        transform.position.x + (x * configData.CellDim), 
-                        0, 
+                        transform.position.x + (x * configData.CellDim),
+                        0,
                         transform.position.z + (y * configData.CellDim)
                         ));
+
                     Cells.Add(cellToAdd);
+                    // Debug
                     Instantiate(CellPrefab, cellToAdd.worldPosition, Quaternion.identity);
                 }
             }

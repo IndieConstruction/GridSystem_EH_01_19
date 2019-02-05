@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridSystem;
 
-public class PositionTester : MonoBehaviour {
 
-    public int x;
-    public int y;
+public class PositionTester : MonoBehaviour
+{
+    public int x, y;
 
     public BaseGrid grid;
 
-	// Update is called once per frame
-	void Update () {
-        if (grid) {
-            transform.position = grid.GetWorldPosition(x, y);
-        }
-        
-	}
+    public void GoToLeft() {
+        x--;
+        transform.position = grid.GetWorldPosition(x, y);
+    }
+
+    public void GoToRight() {
+        x++;
+        transform.position = grid.GetWorldPosition(x, y);
+    }
+
+    public void GoToUp() {
+        y++;
+        transform.position = grid.GetWorldPosition(x, y);
+    }
+
+    public void GoToDown() {
+        y--;
+        transform.position = grid.GetWorldPosition(x, y);
+    }
+
 }
