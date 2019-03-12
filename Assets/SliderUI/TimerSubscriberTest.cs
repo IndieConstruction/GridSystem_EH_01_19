@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UI;
 
 public class TimerSubscriberTest : MonoBehaviour
 {
-    public Slider slider;
+    public UITimer Timer;
 
     private void OnEnable() {
-        slider.EndTimer += endTimerDelegate;
+        Timer.EndTimer += endTimerDelegate;
     }
 
     private void endTimerDelegate() {
@@ -16,7 +17,7 @@ public class TimerSubscriberTest : MonoBehaviour
     }
 
     private void OnDisable() {
-        slider.EndTimer -= endTimerDelegate;
+        Timer.EndTimer -= endTimerDelegate;
     }
 
 }
