@@ -5,21 +5,9 @@ using UnityEngine;
 
 namespace StateMachine {
 
-    public class FlowSM : MonoBehaviour {
+    public class FlowSM : BaseSM {
 
         public GlobalUI UIReference;
-
-        protected BaseState CurrentState {
-            get { return _currentState; }
-            set {
-                if(_currentState != null)
-                    _currentState.Exit();
-                _currentState = value;
-                if (_currentState != null)
-                    _currentState.Enter();
-            }
-        }
-        private BaseState _currentState;
 
         BaseState.Context newContext;
 
@@ -28,7 +16,7 @@ namespace StateMachine {
             StartSM();
         }
 
-        public void StartSM() {
+        public override void StartSM() {
             // Inizializzo il contest condiviso tra tutti gli stati
             newContext = new BaseState.Context() {
                 IntroCountdown = 3.3f,                  // durata della splash intro
@@ -41,9 +29,7 @@ namespace StateMachine {
             CurrentState = newState;
         }
 
-        public void StopSM() {
-            CurrentState = null;
-        }
+        #region routing
 
         protected void goToMainMenu() {
             BaseState newState = new FL_MainMenu_State();
@@ -51,17 +37,7 @@ namespace StateMachine {
             CurrentState = newState;
         }
 
-        private void Update() {
-            if (CurrentState != null)
-                CurrentState.Tick();
-
-            #region TESTS
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                goToMainMenu();
-            }
-            #endregion
-
-        }
+        #endregion
 
         #region Events
 
